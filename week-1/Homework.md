@@ -64,4 +64,4 @@ root@localhost:ny_taxi>
 +------------+------------+
 SELECT 1
 Time: 0.462s
-```console
+```
