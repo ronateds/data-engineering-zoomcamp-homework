@@ -4,11 +4,14 @@ My week 1 [homework](https://github.com/DataTalksClub/data-engineering-zoomcamp/
 
 ## Question 1. Knowing docker tags
 
+```console
 ~ docker build --help | grep "Write the image ID to the file"
       --iidfile string          Write the image ID to the file
+```
 
 ## Question 2. Understanding docker first run
 
+```console
 ~ docker run -it --entrypoint=bash python:3.9
 root@a112498ca1dd:/# pip list
 Package    Version
@@ -16,3 +19,4 @@ Package    Version
 pip        22.0.4
 setuptools 58.1.0
 wheel      0.38.4
+```
