@@ -40,3 +40,28 @@ root@localhost:ny_taxi>
 SELECT 1
 Time: 0.253s
 ```
+
+## Question 4. Largest trip for each day
+
+```console
+root@localhost:ny_taxi>
+ SELECT
+     CAST(lpep_pickup_datetime as DATE) as "day",
+     EXTRACT(EPOCH FROM(lpep_dropoff_datetime - lpep_pickup_datetime)) as difference
+ FROM
+     green_taxi_trips
+ WHERE
+     CAST(lpep_pickup_datetime as DATE) = '2019-01-18' OR
+     CAST(lpep_pickup_datetime as DATE) = '2019-01-28' OR
+     CAST(lpep_pickup_datetime as DATE) = '2019-01-15' OR
+     CAST(lpep_pickup_datetime as DATE) = '2019-01-10'
+ ORDER BY "difference" DESC
+ LIMIT 1;
++------------+------------+
+| day        | difference |
+|------------+------------|
+| 2019-01-28 | 86389.0    |
++------------+------------+
+SELECT 1
+Time: 0.462s
+```console
