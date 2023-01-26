@@ -89,3 +89,30 @@ root@localhost:ny_taxi>
 SELECT 2
 Time: 0.277s
 ```
+
+## Question 6. Largest tip
+
+```console
+root@localhost:ny_taxi>
+ SELECT
+     zpu."Zone" as "pickup_zone",
+     zdo."Zone" as "dropoff_zone",
+     t."tip_amount"
+ FROM
+     green_taxi_trips t,
+     zones zpu,
+     zones zdo
+ WHERE
+     t."PULocationID" = zpu."LocationID" AND
+     t."DOLocationID" = zdo."LocationID" AND
+     zpu."Zone" = 'Astoria'
+ ORDER BY t.tip_amount DESC
+ LIMIT 1
++-------------+-------------------------------+------------+
+| pickup_zone | dropoff_zone                  | tip_amount |
+|-------------+-------------------------------+------------|
+| Astoria     | Long Island City/Queens Plaza | 88.0       |
++-------------+-------------------------------+------------+
+SELECT 1
+Time: 0.294s
+```
