@@ -65,3 +65,27 @@ root@localhost:ny_taxi>
 SELECT 1
 Time: 0.462s
 ```
+
+## Question 5. The number of passengers
+
+
+```console
+root@localhost:ny_taxi>
+ SELECT
+     passenger_count as passengers,
+     COUNT(1)
+ FROM
+     green_taxi_trips
+ WHERE
+     CAST(lpep_pickup_datetime as DATE) = '2019-01-01' AND
+     (passenger_count = 3 OR passenger_count = 2)
+ GROUP BY "passenger_count"
++------------+-------+
+| passengers | count |
+|------------+-------|
+| 2          | 1282  |
+| 3          | 254   |
++------------+-------+
+SELECT 2
+Time: 0.277s
+```
