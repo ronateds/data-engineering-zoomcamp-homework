@@ -71,19 +71,19 @@ The query above gives a wrong answer, the right one is bellow.
 ```console
 root@localhost:ny_taxi>
  SELECT
-     CAST(lpep_pickup_datetime as DATE), MAX(trip_distance) as M
+     CAST(lpep_pickup_datetime as DATE) as date, MAX(trip_distance) as distance
  FROM
      green_taxi_trips
  GROUP BY CAST(lpep_pickup_datetime as DATE)
- ORDER BY M DESC
+ ORDER BY distance DESC
  LIMIT 1
-+----------------------+--------+
-| lpep_pickup_datetime | m      |
-|----------------------+--------|
-| 2019-01-15           | 117.99 |
-+----------------------+--------+
++------------+----------+
+| date       | distance |
+|------------+----------|
+| 2019-01-15 | 117.99   |
++------------+----------+
 SELECT 1
-Time: 0.810s
+Time: 0.800s
 ```
 
 ## Question 5. The number of passengers
