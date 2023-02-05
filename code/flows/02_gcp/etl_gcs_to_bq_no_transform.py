@@ -5,7 +5,7 @@ from prefect_gcp.cloud_storage import GcsBucket
 from prefect_gcp import GcpCredentials
 
 
-@task(retries=3, log_prints=True)
+@task(retries=3)
 def extract_from_gcs(color: str, year: int, month: int) -> Path:
     """Download trip data from GCS"""
     gcs_path = f"data/{color}/{color}_tripdata_{year}-{month:02}.parquet"
@@ -14,13 +14,13 @@ def extract_from_gcs(color: str, year: int, month: int) -> Path:
     return Path(f"../data/{gcs_path}")
 
 
-@task(log_prints=True)
+@task()
 def get_local_df(path: Path) -> pd.DataFrame:
     df = pd.read_parquet(path)
     return df
 
 
-@task(log_prints=True)
+@task()
 def write_bq(df: pd.DataFrame) -> None:
     """Write DataFrame to BiqQuery"""
 
@@ -37,13 +37,18 @@ def write_bq(df: pd.DataFrame) -> None:
 
 @flow(log_prints=True)
 def etl_gcs_to_bq(
-    months: list[int] = [1, 2], year: int = 2021, color: str = "yellow"
+    months: list[int] = [2, 3], year: int = 2019, color: str = "yellow"
 ):
     """Main ETL flow to load data into Big Query"""
+    rows_count = 0
+
     for month in months:
         path = extract_from_gcs(color, year, month)
         df = get_local_df(path)
+        rows_count += len(df.index)
         write_bq(df)
+
+    print('Rows processed was:', rows_count)
 
 
 if __name__ == "__main__":

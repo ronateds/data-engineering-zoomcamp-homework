@@ -10,11 +10,21 @@
 prefect deployment build flows/02_gcp/etl_web_to_gcs.py:etl_web_to_gcs -n etl-homework --cron "0 5 1 * *" -a
 ```
 
-# Question 3
+# Question 3. Loading data to BigQuery
 
 ```console
+Finished in state Completed()
+05:19:58 PM
+write_bq-f3b17cf5-1
 
+Rows processed was: 14851920
+05:19:58 PM
+
+Finished in state Completed('All states completed.')
+05:19:58 PM
 ```
+
+[Code]()
 
 # Question 4
 
