@@ -21,11 +21,14 @@ prefect deployment build flows/02_gcp/etl_web_to_gcs.py:etl_web_to_gcs -n etl-ho
 
 [Code](https://github.com/ronateds/data-engineering-zoomcamp-homework/blob/main/code/flows/02_gcp/etl_gcs_to_bq_no_transform.py)
 
-# Question 4
+# Question 4. Github Storage Block
 
 ```console
-
+18:26:17.927 | INFO    | Task run 'clean-2c6af9f6-0' - rows: 88605
+18:26:18.062 | INFO    | Task run 'clean-2c6af9f6-0' - Finished in state Completed()
 ```
+
+[code](https://github.com/ronateds/data-engineering-zoomcamp-homework/blob/main/code/flows/02_gcp/etl_web_to_gcs_git.py)
 
 # Question 5
 
