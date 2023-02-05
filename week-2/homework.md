@@ -30,14 +30,14 @@ prefect deployment build flows/02_gcp/etl_web_to_gcs.py:etl_web_to_gcs -n etl-ho
 
 [code](https://github.com/ronateds/data-engineering-zoomcamp-homework/blob/main/code/flows/02_gcp/etl_web_to_gcs_git.py)
 
-# Question 5
+# Question 5. Email or Slack notifications
 
 ```console
-
+19:10:14.858 | INFO    | Task run 'clean-2c6af9f6-0' - rows: 514392
+19:10:15.021 | INFO    | Task run 'clean-2c6af9f6-0' - Finished in state Completed()
 ```
 
-# Question 6
+# Question 6. Secrets
 
-```console
-
-```
+Value
+********
