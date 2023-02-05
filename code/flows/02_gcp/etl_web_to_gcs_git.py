@@ -52,7 +52,7 @@ def etl_web_to_gcs() -> None:
     dataset_url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{color}/{dataset_file}.csv.gz"
 
     df = fetch(dataset_url)
-    print('Rows processed was:', len(df)
+    print('Rows processed was:', len(df))
     df_clean = clean(df)
     path = write_local(df_clean, color, dataset_file)
     write_gcs(path)

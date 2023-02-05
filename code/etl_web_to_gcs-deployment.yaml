@@ -1,17 +1,14 @@
 ###
 ### A complete description of a Prefect Deployment for flow 'etl-web-to-gcs'
 ###
-name: etl-homework
+name: git_web_to_gcl
 description: The main ETL function
-version: 2985086a6e51e69efdbb5589bf40e84f
+version: eaaebb28b5e96342f8c1f8ff2d04a923
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 tags: []
 parameters: {}
-schedule:
-  cron: 0 5 1 * *
-  timezone: null
-  day_or: true
+schedule: null
 infra_overrides: {}
 infrastructure:
   type: process
@@ -29,9 +26,17 @@ infrastructure:
 ###
 flow_name: etl-web-to-gcs
 manifest_path: null
-storage: null
-path: /home/ronate/courses/data-engineering-zoomcamp/data-engineering-zoomcamp-homework/code
-entrypoint: flows/02_gcp/etl_web_to_gcs.py:etl_web_to_gcs
+storage:
+  repository: https://github.com/ronateds/data-engineering-zoomcamp-homework.git
+  reference: null
+  access_token: null
+  _block_document_id: 2c193471-3c75-41a6-bd1a-2e89412102c7
+  _block_document_name: git-code
+  _is_anonymous: false
+  block_type_slug: github
+  _block_type_slug: github
+path: ''
+entrypoint: flows/02_gcp/etl_web_to_gcs_git.py:etl_web_to_gcs
 parameter_openapi_schema:
   title: Parameters
   type: object
