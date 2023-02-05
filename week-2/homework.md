@@ -13,18 +13,13 @@ prefect deployment build flows/02_gcp/etl_web_to_gcs.py:etl_web_to_gcs -n etl-ho
 # Question 3. Loading data to BigQuery
 
 ```console
-Finished in state Completed()
-05:19:58 PM
-write_bq-f3b17cf5-1
-
-Rows processed was: 14851920
-05:19:58 PM
-
-Finished in state Completed('All states completed.')
-05:19:58 PM
+17:19:58.054 | INFO    | Task run 'write_bq-f3b17cf5-1' - Finished in state Completed()
+17:19:58.060 | INFO    | Flow run 'fabulous-bustard' - Rows processed was: 14851920
+17:19:58.213 | INFO    | Flow run 'fabulous-bustard' - Finished in state Completed('All states completed.')
+17:19:59.525 | INFO    | prefect.infrastructure.process - Process 'fabulous-bustard' exited cleanly.
 ```
 
-[Code]()
+[Code](https://github.com/ronateds/data-engineering-zoomcamp-homework/blob/main/code/flows/02_gcp/etl_gcs_to_bq_no_transform.py)
 
 # Question 4
 
