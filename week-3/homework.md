@@ -1,3 +1,5 @@
+My answers for the [homework 3](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/cohorts/2023/week_3_data_warehouse/homework.md) 
+
 # Question 1:
 
 Query:
@@ -27,3 +29,19 @@ SELECT COUNT(DISTINCT(Affiliated_base_number)) FROM `direct-outlet-375818.nytaxi
 ```
 
 Preview: 0 MB for external and 317.94 MB for non-partitioned table
+
+# Question 3
+
+Query:
+```sql
+-- records that have both a blank (null) PUlocationID and DOlocationID in the entire dataset
+SELECT count(*) FROM `direct-outlet-375818.nytaxi.fhv_tripdata_non_partitioned`
+WHERE PUlocationID IS NULL AND DOlocationID IS NULL;
+```
+
+Result in JSON:
+```json
+[{
+  "f0_": "717748"
+}]
+```
