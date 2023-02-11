@@ -86,4 +86,4 @@ ORDER BY Affiliated_base_number;
 -- estimates 608.12 KB
 ```
 
-The best strategy to optimize the table is to partition by pickup_datetime and cluster on affiliated_base_number, as will take only 608.12 KB to process the query, compared with 647.87 MB from the other two queries.
+The best strategy to optimize the table is to partition it by pickup_datetime and cluster on affiliated_base_number, as it will take only 608.12 KB to process the query, compared with 647.87 MB from the other two queries.
