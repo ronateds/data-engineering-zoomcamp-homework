@@ -45,3 +45,45 @@ Result in JSON:
   "f0_": "717748"
 }]
 ```
+
+## Question 4
+
+What is the best strategy to optimize the table if query always filter by pickup_datetime and order by affiliated_base_number?
+
+For this question I've created the two first tables, the last two were not possible to create, and then I created a select query for each table and compared them with a query on the non-partitioned table.
+
+```sql
+-- Create a clustered table from external table
+CREATE OR REPLACE TABLE `direct-outlet-375818.nytaxi.fhv_tripdata_clustered`
+CLUSTER BY pickup_datetime, Affiliated_base_number AS
+SELECT * FROM `direct-outlet-375818.nytaxi.fhv_tripdata_external`;
+
+-- Create a partitioned and clustered table from external table
+CREATE OR REPLACE TABLE `direct-outlet-375818.nytaxi.fhv_tripdata_partitioned_clustered`
+PARTITION BY date(pickup_datetime)
+CLUSTER BY Affiliated_base_number AS
+SELECT * FROM `direct-outlet-375818.nytaxi.fhv_tripdata_external`;
+
+-- select from the unpartitioned table
+SELECT pickup_datetime, Affiliated_base_number
+FROM `direct-outlet-375818.nytaxi.fhv_tripdata_non_partitioned`
+WHERE pickup_datetime = '2019-03-31'
+ORDER BY Affiliated_base_number;
+-- estimates 647.87 MB
+
+-- select from the clustered table
+SELECT pickup_datetime, Affiliated_base_number
+FROM `direct-outlet-375818.nytaxi.fhv_tripdata_clustered`
+WHERE pickup_datetime = '2019-03-31'
+ORDER BY Affiliated_base_number;
+-- estimates 647.87 MB
+
+-- select from the partitioned and clustered table
+SELECT pickup_datetime, Affiliated_base_number
+FROM `direct-outlet-375818.nytaxi.fhv_tripdata_partitioned_clustered`
+WHERE pickup_datetime = '2019-03-31'
+ORDER BY Affiliated_base_number;
+-- estimates 608.12 KB
+```
+
+The best strategy to optimize the table is to partition by pickup_datetime and cluster on affiliated_base_number, as will take only 608.12 KB to process the query, compared with 647.87 MB from the other two queries.
