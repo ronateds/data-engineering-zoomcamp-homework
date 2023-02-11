@@ -87,3 +87,19 @@ ORDER BY Affiliated_base_number;
 ```
 
 The best strategy to optimize the table is to partition it by pickup_datetime and cluster on affiliated_base_number, as it will take only 608.12 KB to process the query, compared with 647.87 MB from the other two queries.
+
+## Question 5
+
+```sql
+SELECT distinct(Affiliated_base_number)
+FROM `direct-outlet-375818.nytaxi.fhv_tripdata_non_partitioned`
+WHERE pickup_datetime BETWEEN '2019-03-01' AND '2019-03-31';
+-- estimates 647.87 MB
+
+SELECT distinct(Affiliated_base_number)
+FROM `direct-outlet-375818.nytaxi.fhv_tripdata_partitioned_clustered`
+WHERE pickup_datetime BETWEEN '2019-03-01' AND '2019-03-31';
+-- estimates 23.05 MB
+```
+
+
